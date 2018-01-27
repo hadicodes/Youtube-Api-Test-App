@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Title</title>
+    <title>Youtubely</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -33,6 +33,11 @@
 
 <body>
 
+
+
+
+
+
     <div class="wrapper container">
         <div class="jumbotron">
             <h1 class="display-3">Youtube Api</h1>
@@ -44,29 +49,68 @@
                     <label for="user-query"></label>
                     <input type="text" class="form-control" id="user-query" aria-describedby="emailHelp" placeholder="Search Youtube">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" id="submit">Submit</button>
             </form>
-            <!-- <p class="lead">
-            <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">Jumbo action name</a>
-        </p> -->
+
         </div>
     </div>
 
+    <div class="container" id="results"></div>
 
 
 
 
 
 
-
-    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
         crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+
+
+        //Get Videos
+        
+
+        $("#submit").on("click", function (event) {
+            event.preventDefault();
+            console.log("works");
+            var queryTerm = $("#user-query").val().trim();
+
+            $.ajax({
+                url: "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + queryTerm + "&key=AIzaSyBxQ5Qgf13mwPIrQsEVWmPmzPVqyfoxenk",
+                method: "GET"
+            }).then(function (response) {
+                console.log(response);
+            });
+        })
+
+        
+            // function getVids() {
+            //     $.get(
+            //         "https://www.googleapis.com/youtube/v3/playlistItems", {
+            //             part: 'snippet',
+            //             maxResults: 20,
+            //             key: 'AIzaSyAUh46p99GfGY_YJBy9wcsnOPE6o8-18M8'
+            //         },
+            //         function (data) {
+            //             var results;
+            //             $.each(data.items, function (i, item) {
+            //                 results = '<p>' + item.snippet.title + '</p>';
+            //                 $('#results').append(results);
+            //             });
+            //         }
+            //     );
+            // }
+
+            // getVids();
+
+
+
+    </script>
 </body>
 
 </html>
