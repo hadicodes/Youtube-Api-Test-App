@@ -78,7 +78,7 @@
             var queryTerm = $("#user-query").val().trim();
 
             $.ajax({
-                url: "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + queryTerm + "&safeSearch=strict&type=video&key=AIzaSyBxQ5Qgf13mwPIrQsEVWmPmzPVqyfoxenk",
+                url: "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + queryTerm + "&type=video&key=AIzaSyBxQ5Qgf13mwPIrQsEVWmPmzPVqyfoxenk",
                 method: "GET"
             }).then(function (data) {
                 console.log(data);
