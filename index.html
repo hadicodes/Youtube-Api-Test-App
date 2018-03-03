@@ -8,8 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 </head>
 <style>
     body {
@@ -33,11 +32,6 @@
 
 <body>
 
-
-
-
-
-
     <div class="wrapper container">
         <div class="jumbotron">
             <h1 class="display-3">Youtube Api</h1>
@@ -57,17 +51,13 @@
 
     <div class="container" id="results"></div>
 
-
-
-
-
-
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!--======================================================
+    // SCRIPTS
+    //====================================================== -->
+    <!--jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
-        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
 
@@ -79,18 +69,22 @@
 
             $.ajax({
                 url: "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" + queryTerm + "&type=video&key=AIzaSyBxQ5Qgf13mwPIrQsEVWmPmzPVqyfoxenk",
-                method: "GET"
+                method: "GET",
+                // headers: { "X-XSS-Protection": "1; mode=block" }
+                // headers: { "X-Content-Type-Options": "nosniff" }
             }).then(function (data) {
                 console.log(data);
                 $.each(data.items, (i, item) => {
                     console.log(data.item);
+
                     const videoId = item.id.videoId;
-                    let $iFrameContainer = $(`<iframe width="420" height="345" src="https://www.youtube.com/embed/"' ${videoId} '> <\/iframe >`);
+
+                    let $iFrameContainer = $(`<iframe width="420" height="345" src=https://www.youtube.com/embed/${videoId}> <\/iframe >`);
 
                     $("#results").append($iFrameContainer);
-                    })
-                });
-            })
+                })
+            });
+        })
 
     </script>
 </body>
